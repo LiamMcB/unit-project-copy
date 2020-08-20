@@ -1,0 +1,95 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Calendar</title>
+  <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+  <link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- CODE HERE-->
+  <div class="title"></div>
+
+  <table>
+    <tr class="table-header">
+      <th class="weekday">Monday</th>
+      <th class="weekday">Tuesday</th>
+      <th class="weekday">Wednesday</th>
+      <th class="weekday">Thursday</th>
+      <th class="weekday">Friday</th>
+      <th class="weekday">Saturday</th>
+    </tr>
+    <tr class="week-1">
+      <td class="Monday-week-1"></td>
+      <td class="Tuesday-week-1"></td>
+      <td class="Wednesday-week-1"></td>
+      <td class="Thursday-week-1"></td>
+      <td class="Friday-week-1"></td>
+      <td class="Saturday-week-1"></td>
+    </tr>
+    <tr class="week-2">
+      <td class="Monday-week-2"></td>
+      <td class="Tuesday-week-2"></td>
+      <td class="Wednesday-week-2"></td>
+      <td class="Thursday-week-2"></td>
+      <td class="Friday-week-2"></td>
+      <td class="Saturday-week-2"></td>
+    </tr>
+    <tr class="week-3">
+      <td class="Monday-week-3"></td>
+      <td class="Tuesday-week-3"></td>
+      <td class="Wednesday-week-3"></td>
+      <td class="Thursday-week-3"></td>
+      <td class="Friday-week-3"></td>
+      <td class="Saturday-week-3"></td>
+    </tr>
+    <tr class="week-4">
+      <td class="Monday-week-4"></td>
+      <td class="Tuesday-week-4"></td>
+      <td class="Wednesday-week-4"></td>
+      <td class="Thursday-week-4"></td>
+      <td class="Friday-week-4"></td>
+      <td class="Saturday-week-4"></td>
+    </tr>
+    <tr class="week-5">
+      <td class="Monday-week-5"></td>
+      <td class="Tuesday-week-5"></td>
+      <td class="Wednesday-week-5"></td>
+      <td class="Thursday-week-5"></td>
+      <td class="Friday-week-5"></td>
+      <td class="Saturday-week-5"></td>
+    </tr>
+    <tr class="week-6">
+      <td class="Monday-week-6"></td>
+      <td class="Tuesday-week-6"></td>
+      <td class="Wednesday-week-6"></td>
+      <td class="Thursday-week-6"></td>
+      <td class="Friday-week-6"></td>
+      <td class="Saturday-week-6"></td>
+    </tr>
+  </table>
+
+
+</body>
+<script src="./node_modules/expect/umd/expect.min.js"></script>
+<script src="./node_modules/mocha/mocha.js"></script>
+<script src="./test/polyfill.js"></script>
+<script src='./client/main.js'></script>
+
+<script>
+  // If called from Mocha Phantom-JS on the command line then add the test scripts
+  // to the end of the document.
+  if (window.callPhantom) {
+    mocha.setup('bdd')
+    addScript('./test/online-calendar-test.js');
+    addScript('./test/online-chatroom-test.js');
+    addScript('./test/runMocha.js');
+  }
+  
+  function addScript(path) {
+    var js = document.createElement('script');
+    js.type = 'text/javascript';
+    js.src = path;
+    document.body.appendChild(js);
+  }
+</script>
+</html>
