@@ -1,34 +1,76 @@
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>Calendar</title>
-  <script src="./node_modules/jquery/dist/jquery.min.js"></script>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Calendar</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="week-col col">
+        <div class="week header">Week</div>
+        <div class="week1">1</div>
+        <div class="week2">2</div>
+        <div class="week3">3</div>
+        <div class="week4">4</div>
+        <div class="week5">5</div>
+        <div class="week6">6</div>
+      </div>
+      <div class="monday-col col">
+        <div class="monday header">Monday</div>
+      </div>
+      <div class="tuesday-col col">
+        <div class="tuesday header">Tuesday</div>
+      </div>
+      <div class="wednesday-col col">
+        <div class="wednesday header">Wednesday</div>
+      </div>
+      <div class="thursday-col col">
+        <div class="thursday header">Thursday</div>
+      </div>
+      <div class="friday-col col">
+        <div class="friday header">Friday</div>
+      </div>
+      <div class="saturday-col col">
+        <div class="saturday header">Saturday</div>
+      </div>
+    </div>
 
+    <!-- Create container for whole chat, with messages and form-->
+    <div class="chat-container">
+      <div class="messages-container">
+        <div class="feed"></div>
+      </div>
+      <div class="form-container">
+        <form action="" class="form">
+          <input type="text" class="text-input" placeholder="Message" />
+          <input type="text" class="created-by" placeholder="Username" />
+          <button type="submit" class="submit-button">Post Message</button>
+        </form>
+      </div>
+    </div>
+  </body>
 
-</body>
-<script src="./node_modules/expect/umd/expect.min.js"></script>
-<script src="./node_modules/mocha/mocha.js"></script>
-<script src="./test/polyfill.js"></script>
-<script src='./client/main.js'></script>
+  <script src="./node_modules/expect/umd/expect.min.js"></script>
+  <script src="./node_modules/mocha/mocha.js"></script>
+  <script src="./test/polyfill.js"></script>
+  <script src="./client/main.js"></script>
 
-<script>
-  // If called from Mocha Phantom-JS on the command line then add the test scripts
-  // to the end of the document.
-  if (window.callPhantom) {
-    mocha.setup('bdd')
-    addScript('./test/online-calendar-test.js');
-    addScript('./test/online-chatroom-test.js');
-    addScript('./test/runMocha.js');
-  }
-  
-  function addScript(path) {
-    var js = document.createElement('script');
-    js.type = 'text/javascript';
-    js.src = path;
-    document.body.appendChild(js);
-  }
-</script>
+  <script>
+    // If called from Mocha Phantom-JS on the command line then add the test scripts
+    // to the end of the document.
+    if (window.callPhantom) {
+      mocha.setup('bdd');
+      addScript('./test/online-calendar-test.js');
+      addScript('./test/online-chatroom-test.js');
+      addScript('./test/runMocha.js');
+    }
 
+    function addScript(path) {
+      var js = document.createElement('script');
+      js.type = 'text/javascript';
+      js.src = path;
+      document.body.appendChild(js);
+    }
+  </script>
 </html>
