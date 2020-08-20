@@ -90,9 +90,19 @@ function getData() {
   fetch('https://curriculum-api.codesmith.io/messages')
     .then((response) => response.json())
     .then((data) => {
+      let counter = 0;
+      // Run following function every time message is input
       data.forEach((obj, i) => {
-        let div = `<div class="feed-item${i}">${obj.message}</div>`;
-        $('.feed').append(div);
+        if (counter < 15 && typeof obj.message === 'string') {
+          let div = `<div class="feed-item${i}">${obj.message}</div>`;
+          let createdBy = `<div class="user${i} sent-by">Sent By: ${obj.created_by}</div>`;
+          let msgContainer = `<div class="msg-container">${
+            div + createdBy
+          }</div>`;
+
+          $('.feed').prepend(msgContainer);
+          counter += 1;
+        }
       });
     })
     .catch((err) => console.log(err));
@@ -106,8 +116,10 @@ $('.form').on('submit', function (e) {
   e.preventDefault();
   let messageInput = $('.text-input').val();
   let createdBy = $('.created-by').val();
-  console.log(messageInput, createdBy);
   postData(messageInput, createdBy);
+  updateData();
+  // Clear input fields
+  $('input').val('');
 });
 
 // Create a function called post data that posts message to API
@@ -132,3 +144,30 @@ function postData(message, createdBy) {
       console.error('Error:', error);
     });
 }
+
+// Create function update data that just adds message to top of feed
+function updateData() {
+  fetch('https://curriculum-api.codesmith.io/messages')
+    .then((response) => response.json())
+    .then((data) => {
+      // Run following function every when message is input
+      data.forEach((obj, i) => {
+        if (i === 0 && typeof obj.message === 'string') {
+          let div = `<div class="feed-item${i}">${obj.message}</div>`;
+          let createdBy = `<div class="user${i} sent-by">Sent By: ${obj.created_by}</div>`;
+          let msgContainer = `<div class="msg-container">${
+            div + createdBy
+          }</div>`;
+
+          $('.feed').prepend(msgContainer);
+        }
+      });
+    })
+    .catch((err) => console.log(err));
+}
+
+// $('document').ready(function () {
+//   setInterval(function () {
+//     updateData();
+//   }, 500);
+// });

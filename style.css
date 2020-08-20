@@ -56,3 +56,48 @@ body {
   justify-content: center;
   padding-top: 0.5rem;
 }
+
+.msg-container {
+  margin: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #000;
+  border-radius: 10px;
+  background: linear-gradient(green, rgb(48, 92, 48));
+  color: white;
+}
+
+.msg-container:hover {
+  background: linear-gradient(rgb(48, 92, 48), green);
+  cursor: pointer;
+}
+
+.sent-by {
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 90%;
+}
+
+.submit-button {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background-color: #0275d8;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+}
+
+.submit-button:hover {
+  cursor: pointer;
+  background-color: #015aa7;
+}
+
+.created-by {
+  margin-top: 0.5rem;
+}
