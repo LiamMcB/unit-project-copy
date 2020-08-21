@@ -90,6 +90,7 @@ function getData() {
   fetch('https://curriculum-api.codesmith.io/messages')
     .then((response) => response.json())
     .then((data) => {
+      // Counter keeps track of the number of messages that populate the screen and only allows 15 non-object messages
       let counter = 0;
       // Run following function every time message is input
       data.forEach((obj, i) => {
@@ -99,7 +100,7 @@ function getData() {
           let msgContainer = `<div class="msg-container">${
             div + createdBy
           }</div>`;
-
+          // Add to top of message feed
           $('.feed').prepend(msgContainer);
           counter += 1;
         }
@@ -152,7 +153,13 @@ function updateData() {
     .then((data) => {
       // Run following function every when message is input
       data.forEach((obj, i) => {
-        if (i === 0 && typeof obj.message === 'string') {
+        // Checks to make sure it doesn't update the feed with messages that are already there
+        let text = $(`.feed-item${i}`).html();
+        if (
+          i === 0 &&
+          typeof obj.message === 'string' &&
+          obj.message !== text
+        ) {
           let div = `<div class="feed-item${i}">${obj.message}</div>`;
           let createdBy = `<div class="user${i} sent-by">Sent By: ${obj.created_by}</div>`;
           let msgContainer = `<div class="msg-container">${
@@ -166,8 +173,8 @@ function updateData() {
     .catch((err) => console.log(err));
 }
 
-// $('document').ready(function () {
-//   setInterval(function () {
-//     updateData();
-//   }, 500);
-// });
+$('document').ready(function () {
+  setInterval(function () {
+    updateData();
+  }, 1000);
+});
